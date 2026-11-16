@@ -1,0 +1,3 @@
+# Sitio de demostración con datos de muestra: no se indexa en buscadores.
+User-agent: *
+Disallow: /
