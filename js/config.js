@@ -43,6 +43,15 @@ const CONFIG = {
   LOGO_URL: "",          // ej. "img/logo.png" (ruta relativa a la raíz del sitio)
   FOTO_AGENTE_URL: "",   // ej. "img/agente.jpg"
 
+  // Datos del asesor para portada y ficha (déjalos vacíos para ocultarlos).
+  AGENTE_CARGO: "",
+  AGENTE_ANIOS: 0,
+  AGENTE_COLEGAS: 0,
+  AGENTE_TRANSACCIONES: 0,
+  AGENTE_ANIO_REFERENCIA: 2026,
+  // Zonas de la portada ("Explora por zona"): se buscan en el catálogo.
+  ZONAS_DESTACADAS: ["Jamundí", "Palmira"],
+
   // Colores: los mismos del catálogo de Alejandro (plan Crecimiento).
   COLOR_PRIMARIO: "#0f5b4f",
   COLOR_PRIMARIO_OSCURO: "#0b4339",

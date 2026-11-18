@@ -28,9 +28,6 @@ function buscarInmueble(values, id) {
   const c = {
     tipo: col((x) => x === "tipo"),
     barrio: col((x) => x.includes("barrio") || x.includes("zona")),
-    ciudad: col((x) => x === "ciudad"),
-    administracion: col((x) => x.includes("administracion") || x.includes("admon")),
-    ascensor: col((x) => x.includes("ascensor")),
     precio: col((x) => x.includes("precio") && !x.includes("arriendo")),
     canon: col((x) => x.includes("canon")),
     area: col((x) => x.startsWith("area")),
@@ -55,8 +52,7 @@ function buscarInmueble(values, id) {
   const g = (k) => (c[k] >= 0 ? String(fila[c[k]] || "").trim() : "");
   const fotos = [g("imagen"), ...g("fotos").split(/[\s,]+/)].map((u) => seguroUrl(u)).filter((u, i, a) => u && a.indexOf(u) === i);
   return {
-    id: g("id"), tipo: g("tipo") || "Inmueble", barrio: g("barrio"), ciudad: g("ciudad"),
-    administracion: numero(g("administracion")), ascensor: /^(si|sí|s|tiene|con)\b/i.test(g("ascensor")), precio: numero(g("precio")), canon: numero(g("canon")),
+    id: g("id"), tipo: g("tipo") || "Inmueble", barrio: g("barrio"), precio: numero(g("precio")), canon: numero(g("canon")),
     area: g("area"), habitaciones: g("habitaciones"), banos: g("banos"), parqueadero: g("parqueadero"), piso: g("piso"),
     estrato: g("estrato"), estado: g("estado"), servicio: g("servicio"), credito: g("credito"),
     descripcion: g("descripcion"), captacion: g("captacion"), fotos,
@@ -80,7 +76,7 @@ function textoCredito(v) {
 function pintar(inm) {
   const negocio = /arriendo/i.test(inm.servicio) && !/venta/i.test(inm.servicio) ? "Arriendo"
     : /venta/i.test(inm.servicio) && /arriendo/i.test(inm.servicio) ? "Venta y arriendo" : (inm.servicio || (inm.canon && !inm.precio ? "Arriendo" : "Venta"));
-  const titulo = `${inm.tipo}${inm.barrio ? " en " + inm.barrio : ""}${inm.ciudad ? ", " + inm.ciudad : ""}`;
+  const titulo = `${inm.tipo}${inm.barrio ? " en " + inm.barrio : ""}`;
   document.title = `${titulo} — Ficha técnica`;
 
   const datos = [
@@ -90,8 +86,6 @@ function pintar(inm) {
     [inm.parqueadero, "Parqueadero"],
     [inm.piso, "Piso"],
     [inm.estrato, "Estrato"],
-    [inm.ascensor ? "Sí" : "", "Ascensor"],
-    [inm.administracion ? cop(inm.administracion) : "", "Administración"],
     [textoCredito(inm.credito), "Financiación"],
   ].filter((d) => String(d[0] || "").trim());
 
