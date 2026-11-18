@@ -27,7 +27,7 @@ const CONFIG = {
 
   // WhatsApp de la demo: código de país + número, sin "+" ni espacios.
   WHATSAPP_NUMBER: "573164854961",
-  WHATSAPP_MESSAGE: "Hola, quiero más información sobre los inmuebles disponibles.",
+  WHATSAPP_MESSAGE: "Hola, me interesa más información del catálogo web",
 
   // URL del despliegue (Web App) de Apps Script del cliente de pruebas
   // (la misma de agentes/prueba.json en el repo del panel). Recibe los leads.
